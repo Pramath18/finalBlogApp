@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   def search
     @query = params[:query]
-    @posts = Post.where("posts.title LIKE?",["%#{@query}%"])
+    @posts = Post.where("posts.title ILIKE?",["%#{@query}%"])
   end
   # GET /posts/1 or /posts/1.json
   def show
