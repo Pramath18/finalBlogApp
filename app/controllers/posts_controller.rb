@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     @posts = Post.all
 
   end
+  @product = Product.new @categories = Category.all
 
   def search
     @query = params[:query]

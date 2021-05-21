@@ -21,7 +21,7 @@
     <%= form.text_area :body %>
   </div>
 
-  
+<td><%= link_to Category.find(product.category).name, category_path(product.category) %></td>
 
   <div class="actions">
     <%= form.submit %>
