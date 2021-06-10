@@ -3,7 +3,16 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+
+    @categories = Category.all
+
+    cate = params[:cate]
+    
+    if !cate.nil?
+      @posts = Post.where(:category_id => cate)
+    else
+      @posts = Post.all
+    end
     
   end
 
@@ -24,9 +33,10 @@ class PostsController < ApplicationController
   def edit
   end
 
-  # POST /posts or /posts.json
+  # PST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    # @post.category_id = params[:category_id]
     @post.user = current_user
     respond_to do |format|
       if @post.save
@@ -70,6 +80,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :category_id)
     end
 end

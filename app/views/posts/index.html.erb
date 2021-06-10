@@ -30,6 +30,13 @@
 
 <br>
 
+<% @categories.each  do |category| %>
+<%= link_to category.category, posts_path(:cate => category.id) %>
+<% end %>
+
+<br>
+<br>
+
 <%= link_to 'New Post', new_post_path %>
 
 <br>

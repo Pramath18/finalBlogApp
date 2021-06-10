@@ -21,7 +21,10 @@
     <%= form.text_area :body %>
   </div>
 
-<td><%= link_to Category.find(product.category).name, category_path(product.category) %></td>
+<td>
+<%=form.label :category %>
+<%= form.select :category_id, Category.all.map {|c| [c.category, c.id]} %>
+</td>
 
   <div class="actions">
     <%= form.submit %>
