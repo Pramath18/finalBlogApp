@@ -25,13 +25,18 @@
     <%= form.label :body %>
     <%= form.text_area :body %>
   </div>
+  
 
 <td>
 <%=form.label :category %>
 <%= form.select :category_id, Category.all.map {|c| [c.category, c.id]} %>
 </td>
-
+<div>
+<%= form.check_box :private %>
+<%= form.label :private %>
+</div>
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+

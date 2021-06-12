@@ -1,8 +1,24 @@
+<%= javascript_pack_tag 'index' %>
+
+<head>
+<style>
+body{
+  background-color:#66ffcc;
+}
+.post{
+  font-size:50px;
+}
+a{
+  text-decoration:none;
+  
+}
+</style>
+</head>
+<body>
 <p id="notice"><%= notice %></p>
+<h1 class="post"><center>Posts</center></h1>
 
-<h1>Posts</h1>
-
-<table>
+<table border="2">
   <thead>
     <tr>
       <th>title</th>
@@ -15,9 +31,9 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.title.titleize %></td>
-        <td><%= post.body %></td>
-        <td><%= post.user_id %></td>
+       <td><center><%= post.title.titleize %></center></td>
+       <td><center><%= post.body %></center></td>
+        <td><center><%= post.user_id %></center></td>
         <td><%= link_to 'Show', post %></td>
         <% if current_user && current_user.admin %>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
@@ -38,7 +54,7 @@
 <br>
 
 <%= link_to 'New Post', new_post_path %>
-
+<a href="google.com">Google</a>
 <br>
 <br>
 <div>
@@ -47,3 +63,4 @@
     <button class="btn btn-outline_success" type="submit">Search</button>
   </form>
 </div>
+</body>

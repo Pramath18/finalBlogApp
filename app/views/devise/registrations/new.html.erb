@@ -1,40 +1,130 @@
-<h2>Sign up</h2>
+<html>
+<head>
+<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css"/>
+<style>
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+}
+
+.signup-box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.signup-box h1 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.field{
+  position:relative;
+}
+
+ .icon-big{
+  font-size:200%;  
+  width: 70%;
+  color: #e67e22;  
+  float: left;
+}
+
+
+.textbox{
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.btn{
+   position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+}
+
+.btn:hover{
+    background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  
+} 
+
+</style>
+
+</head>
+
+<body>
+<div class="signup-box">
+<h1>Sign up</h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :Name %><br />
-    <%= f.text_field :name %>
+    <i class="ion-ios7-person-outline icon-big"></i>
+    <%= f.text_field :name, placeholder:"Name", class:"textbox" %>
   </div>
 
   <div class="field">
-    <%= f.label :Mobile_Number %><br />
-    <%= f.text_field :Mobile_Number %>
+    <i class="ion-ios7-telephone-outline icon-big"></i>
+    <%= f.text_field :Mobile_Number , placeholder:"Mobile Number" , class:"textbox"%>
   </div>
 
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <i class="ion-ios7-email-outline icon-big"></i>
+    <%= f.email_field :email, autofocus: true, class:"textbox" ,autocomplete: "email" , placeholder:"Email"%>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    
+    <%# <% if @minimum_password_length %> 
+    <%# <!--em-->(<%= @minimum_password_length characters minimum)<!--/em--> %>
+    <%# <% end %><!--br /--> 
+    <i class="ion-ios7-locked-outline icon-big"></i>
+    <%= f.password_field :password, autocomplete: "new-password" , class:"textbox" , placeholder:"Set Password (Min. 6 characters)"%>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <i class="ion-ios7-checkmark-outline icon-big"></i>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" ,class:"textbox", placeholder:"Confirm Password"%>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class:"btn" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%# <%= render "devise/shared/links" %> 
+</div>
+</body>
+</html>

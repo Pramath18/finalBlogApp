@@ -1,14 +1,62 @@
-<h1>Welcome to Our page</h1>
+<head>
+<style>
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
 
+.btn {
+  background: #d97b34;
+  background-image: -webkit-linear-gradient(top, #d97b34, #b85c2b);
+  background-image: -moz-linear-gradient(top, #d97b34, #b85c2b);
+  background-image: -ms-linear-gradient(top, #d97b34, #b85c2b);
+  background-image: -o-linear-gradient(top, #d97b34, #b85c2b);
+  background-image: linear-gradient(to bottom, #d97b34, #b85c2b);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #000;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+</style>
+
+</head>
+
+
+<div class="header">
+  <h1>
+  Welcome to Page</h1>
+  <p>My supercool header</p>
+</div>
+
+<div> 
 <% if current_user %> 
 <%= link_to 'Sign out', destroy_user_session_path,
   method: :delete %> 
 <%= link_to 'Posts',posts_path %>
 
 <% else %> 
-<%= link_to 'Sign up', new_user_registration_path %>
+<%= link_to 'Sign up', new_user_registration_path, class:"btn" %>
 
-<%= link_to 'Sign in', new_user_session_path %>
+<%= link_to 'Sign in', new_user_session_path, class:"btn" %>
 
  <% end %> 
- <%= link_to 'about',rails_path%>
+ <%= link_to 'about',rails_path , class:"btn"%>
+ </div
+ >

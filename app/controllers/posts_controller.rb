@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   # GET /posts or /posts.json
   def index
-
+    @posts = Post.all
     @categories = Category.all
 
     cate = params[:cate]
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   # PST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-    # @post.category_id = params[:category_id]
+    @post.category_id = params[:category_id]
     @post.user = current_user
     respond_to do |format|
       if @post.save
@@ -77,9 +77,9 @@ class PostsController < ApplicationController
     def set_post
       @post = Post.find(params[:id])
     end
-
+    def
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :category_id, :image)
+      params.require(:post).permit(:title, :body, :category_id, :image, :private)
     end
 end
