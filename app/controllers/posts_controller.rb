@@ -73,6 +73,14 @@ class PostsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def check_user
+       if @post.private && current_user != @article.check_user
+        redirect_to root_url,alert:"you are not authorized."
+       end
+      end 
+    
+    
+    
     def set_post
       @post = Post.find(params[:id])
     end
