@@ -1,3 +1,81 @@
+<html>
+<head>
+<style>
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+}
+
+.category-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 450px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.h2{
+  margin-top:-20px;
+  margin-bottom:30px;
+  color:#cce6ff;
+  text-transform:uppercase;
+  font-family: 'Ultra', sans-serif;   
+ 
+}
+
+.create-cat{
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #e67e22;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 10px;
+  letter-spacing: 4px;
+  border-radius: 15px;
+  background: linear-gradient(#141e30, #243b55);
+  
+
+}
+
+.text-field{
+   width: 100%;
+  padding: 10px 0;
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+
+.create-cat:hover{
+  color: #eaaa62;
+}
+
+
+</style>
+</head>
+<body>
+<div class="category-form">
+
+<h2 class="h2">Add New Category</h2>
+
 <%= form_with(model: category) do |form| %>
   <% if category.errors.any? %>
     <div id="error_explanation">
@@ -12,11 +90,14 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :category %>
-    <%= form.text_field :category %>
+    <%= form.text_field :category, placeholder:"New Category", class:"text-field" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Create", class:"create-cat" %>
   </div>
 <% end %>
+
+</div>
+</body> 
+</html>

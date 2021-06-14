@@ -26,9 +26,124 @@
   type="text/css"
 />
 <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css"/>
-
-
 <%= stylesheet_link_tag "styles" %>
+ <style>
+
+body{
+  background-color:#cce6ff;
+}
+.header{
+  margin-left:352px;
+  margin-top:30px;
+  background-color:#e79e4b;
+  width:1200px;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+
+}
+ 
+
+/*H2*/
+.create-post{
+  margin-top:-20px;
+  margin-bottom:20px;
+  margin-left:-650px;
+  color:#cce6ff;
+  text-transform:uppercase;
+  font-family: 'Ultra', sans-serif;   
+  
+}
+
+.new-post {
+  margin-top: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1200px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(#141e30, #243b55);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+   height:950px;
+} 
+
+.image{
+  margin-top:10px;
+  margin-bottom: 10px;
+  color:#fff;
+}
+
+.title{
+  width: 1125px;
+  background: linear-gradient(#141e30, #243b55);
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px #999;
+  border-radius:5px;
+  color:#fff ;
+  margin-top:10px;
+  height:50px;
+}
+
+.text-area{
+    width: 1125px;
+    height: 550px;
+    margin-top:10px;  
+    align: center;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+    background: linear-gradient(#141e30, #243b55);
+    color:#fff;
+}
+
+.image-label{
+  color:#fff;
+}
+
+
+
+.publish-btn{
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #e67e22;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 10px;
+  letter-spacing: 4px;
+  border-radius: 15px;
+  background: linear-gradient(#141e30, #243b55);
+  
+
+}
+
+.publish-btn:hover{
+  color: #eaaa62;
+}
+
+.category{
+  color:#fff;
+  margin-top:10px;
+}
+.private-label{
+  color:#fff;
+  margin-top:0px;
+}
+
+.new-category{
+  background:linear-gradient(#141e30, #243b55);
+  margin-left:20px;
+  text-decoration:underline;
+}
+
+</style> 
 </head>
 <body>
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
@@ -59,12 +174,8 @@
         </nav>
 <hr class="my-4">
 
-<h1><center>Create Post</center></h1>
-
-
-
-
-
+<div class="new-post">
+<h1 class="create-post"><center>Inscribe To Describe</center></h1>
 
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>
@@ -80,33 +191,78 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+<%=form.label :Category, class:"category" %>
+<%= form.select :category_id, Category.all.map {|c| [c.category, c.id]} %>
+ <%= link_to "New Category", new_category_url, class:"new-category"%>
+</div>
+  
+  <div class="field">
+    <%# <%= form.label :title %>
+    <%= form.text_field :title, class:"title", placeholder:"Title" %>
   </div>
 
-    <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
+ <div class="field">
+    <%# <%= form.label :body %> 
+    <%= form.text_area :body, class:"text-area", placeholder:"Blog Here..." %>
   </div>
+
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+    <%= form.label :"Attach Image", class:"image-label" %>
+    <%= form.file_field :image, class:"image" %>
   </div>
+
   
 
-<td>
-<%=form.label :category %>
-<%= form.select :category_id, Category.all.map {|c| [c.category, c.id]} %>
-</td>
+
 <div>
 <%= form.check_box :private %>
-<%= form.label :private %>
+<%= form.label :Private, class:"private-label" %>
 </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Publish", class:"publish-btn" %>
   </div>
 <% end %>
+</div>
+
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+
+<script>
+/*!
+* Start Boot    strap - Clean Blog v6.0.3 (https://startbootstrap.com/theme/clean-blog)
+* Copyright 2013-2021 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-clean-blog/blob/master/LICENSE)
+*/
+window.addEventListener('DOMContentLoaded', () => {
+    let scrollPos = 0;
+    const mainNav = document.getElementById('mainNav');
+    const headerHeight = mainNav.clientHeight;
+    window.addEventListener('scroll', function() {
+        const currentTop = document.body.getBoundingClientRect().top * -1;
+        if ( currentTop < scrollPos) {
+            // Scrolling Up
+            if (currentTop > 0 && mainNav.classList.contains('is-fixed')) {
+                mainNav.classList.add('is-visible');
+            } else {
+                console.log(123);
+                mainNav.classList.remove('is-visible', 'is-fixed');
+            }
+        } else {
+            // Scrolling Down
+            mainNav.classList.remove(['is-visible']);
+            if (currentTop > headerHeight && !mainNav.classList.contains('is-fixed')) {
+                mainNav.classList.add('is-fixed');
+            }
+        }
+        scrollPos = currentTop;
+    });
+})
+
+</script>
+
+
 
 </body>
 </html>
